@@ -24,9 +24,9 @@ public class BattleManager : MonoSingleton<BattleManager>
     private void Start()
     {
         round = 0;
-        Main.instance.cfgTables.TbDefineFromExcel2.DataList.ForEach(data =>
+        /*Main.instance.cfgTables.TbDefineFromExcel2.DataList.ForEach(data =>
         {
             Debug.Log(data.Id);
-        });
+        });*/
     }
 }
