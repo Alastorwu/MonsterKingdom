@@ -12,13 +12,13 @@ using Luban;
 
 namespace cfg
 {
-public sealed partial class DefineFromExcel2 : Luban.BeanBase
+public sealed partial class Monster : Luban.BeanBase
 {
-    public DefineFromExcel2(ByteBuf _buf) 
+    public Monster(ByteBuf _buf) 
     {
         Id = _buf.ReadInt();
-        X1 = _buf.ReadBool();
-        X5 = _buf.ReadLong();
+        Name = _buf.ReadString();
+        Magic = (game.MagicAttribute)_buf.ReadInt();
         X6 = _buf.ReadFloat();
         X8 = _buf.ReadInt();
         X10 = _buf.ReadString();
@@ -31,9 +31,9 @@ public sealed partial class DefineFromExcel2 : Luban.BeanBase
         if(_buf.ReadBool()){ V11 = ExternalTypeUtil.NewVector3(vec3.Deserializevec3(_buf)); } else { V11 = null; }
     }
 
-    public static DefineFromExcel2 DeserializeDefineFromExcel2(ByteBuf _buf)
+    public static Monster DeserializeMonster(ByteBuf _buf)
     {
-        return new DefineFromExcel2(_buf);
+        return new Monster(_buf);
     }
 
     /// <summary>
@@ -43,8 +43,8 @@ public sealed partial class DefineFromExcel2 : Luban.BeanBase
     /// <summary>
     /// 字段x1
     /// </summary>
-    public readonly bool X1;
-    public readonly long X5;
+    public readonly string Name;
+    public readonly game.MagicAttribute Magic;
     public readonly float X6;
     public readonly int X8;
     public readonly string X10;
@@ -56,7 +56,7 @@ public sealed partial class DefineFromExcel2 : Luban.BeanBase
     public readonly System.Collections.Generic.List<UnityEngine.Vector4> K11;
     public readonly UnityEngine.Vector3? V11;
    
-    public const int __ID__ = 482045152;
+    public const int __ID__ = -1393696838;
     public override int GetTypeId() => __ID__;
 
     public  void ResolveRef(Tables tables)
@@ -80,8 +80,8 @@ public sealed partial class DefineFromExcel2 : Luban.BeanBase
     {
         return "{ "
         + "id:" + Id + ","
-        + "x1:" + X1 + ","
-        + "x5:" + X5 + ","
+        + "name:" + Name + ","
+        + "magic:" + Magic + ","
         + "x6:" + X6 + ","
         + "x8:" + X8 + ","
         + "x10:" + X10 + ","

@@ -13,17 +13,20 @@ namespace cfg
 {
 public partial class Tables
 {
-    public Battle.TbDefineFromExcel2 TbDefineFromExcel2 {get; }
+    /// <summary>
+    /// 怪物表
+    /// </summary>
+    public TblMonster TblMonster {get; }
 
     public Tables(System.Func<string, ByteBuf> loader)
     {
-        TbDefineFromExcel2 = new Battle.TbDefineFromExcel2(loader("battle_tbdefinefromexcel2"));
+        TblMonster = new TblMonster(loader("tblmonster"));
         ResolveRef();
     }
     
     private void ResolveRef()
     {
-        TbDefineFromExcel2.ResolveRef(this);
+        TblMonster.ResolveRef(this);
     }
 }
 
