@@ -21,6 +21,10 @@ namespace cfg.game
         /// 学习
         /// </summary>
         learn = 2,
+        /// <summary>
+        /// 自带
+        /// </summary>
+        born = 3,
     }
 
 } 

@@ -1,5 +1,5 @@
+using System.Linq;
 using cfg;
-using cfg.game;
 using Game.Common;
 using UnityEngine;
 
@@ -26,7 +26,9 @@ public class BattleManager : MonoSingleton<BattleManager>
         });*/
         foreach (Skill skill in Main.instance.cfgTables.TblSkill.DataList)
         {
-            Debug.Log(skill.Name);
+            int[] array = skill.DescriptionVal.ToArray();
+            Debug.Log(skill.Id + " " + skill.Name + " " +
+                      string.Format(skill.Description, array.Cast<object>().ToArray()));
         }
         /*Main.instance.cfgTables.TbDefineFromExcel2.DataList.ForEach(data =>
         {

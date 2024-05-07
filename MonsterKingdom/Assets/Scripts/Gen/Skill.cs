@@ -16,13 +16,14 @@ public sealed partial class Skill : Luban.BeanBase
 {
     public Skill(ByteBuf _buf) 
     {
-        Id = _buf.ReadInt();
+        Id = _buf.ReadString();
         Name = _buf.ReadString();
         PointConsume = _buf.ReadInt();
         PointType = (game.SkillConsumePointType)_buf.ReadInt();
         {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);MagicConsume = new System.Collections.Generic.List<game.MagicAttribute>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { game.MagicAttribute _e0;  _e0 = (game.MagicAttribute)_buf.ReadInt(); MagicConsume.Add(_e0);}}
         IsAction = _buf.ReadBool();
         SkillLearnType = (game.SkillLearnType)_buf.ReadInt();
+        LearnConsume = _buf.ReadInt();
         Description = _buf.ReadString();
         {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);DescriptionVal = new System.Collections.Generic.List<int>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { int _e0;  _e0 = _buf.ReadInt(); DescriptionVal.Add(_e0);}}
     }
@@ -35,7 +36,7 @@ public sealed partial class Skill : Luban.BeanBase
     /// <summary>
     /// id
     /// </summary>
-    public readonly int Id;
+    public readonly string Id;
     /// <summary>
     /// 技能名
     /// </summary>
@@ -51,6 +52,7 @@ public sealed partial class Skill : Luban.BeanBase
     public readonly System.Collections.Generic.List<game.MagicAttribute> MagicConsume;
     public readonly bool IsAction;
     public readonly game.SkillLearnType SkillLearnType;
+    public readonly int LearnConsume;
     /// <summary>
     /// 技能描述
     /// </summary>
@@ -62,6 +64,7 @@ public sealed partial class Skill : Luban.BeanBase
 
     public  void ResolveRef(Tables tables)
     {
+        
         
         
         
@@ -83,6 +86,7 @@ public sealed partial class Skill : Luban.BeanBase
         + "magicConsume:" + Luban.StringUtil.CollectionToString(MagicConsume) + ","
         + "isAction:" + IsAction + ","
         + "skillLearnType:" + SkillLearnType + ","
+        + "learnConsume:" + LearnConsume + ","
         + "description:" + Description + ","
         + "descriptionVal:" + Luban.StringUtil.CollectionToString(DescriptionVal) + ","
         + "}";

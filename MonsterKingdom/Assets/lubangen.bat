@@ -8,7 +8,7 @@ dotnet %LUBAN_DLL% ^
     -c cs-bin ^
     -d bin  ^
     --conf %CONF_ROOT%\luban.conf ^
-    -x outputCodeDir=Gen ^
+    -x outputCodeDir=Scripts\Gen ^
     -x outputDataDir=StreamingAssets\GenerateDatas\bytes ^
     -x pathValidator.rootDir=.. ^
     -x l10n.provider=default ^
