@@ -17,16 +17,22 @@ public partial class Tables
     /// 怪物表
     /// </summary>
     public TblMonster TblMonster {get; }
+    /// <summary>
+    /// 技能表
+    /// </summary>
+    public TblSkill TblSkill {get; }
 
     public Tables(System.Func<string, ByteBuf> loader)
     {
         TblMonster = new TblMonster(loader("tblmonster"));
+        TblSkill = new TblSkill(loader("tblskill"));
         ResolveRef();
     }
     
     private void ResolveRef()
     {
         TblMonster.ResolveRef(this);
+        TblSkill.ResolveRef(this);
     }
 }
 
