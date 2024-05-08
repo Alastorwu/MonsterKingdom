@@ -18,17 +18,7 @@ public sealed partial class Monster : Luban.BeanBase
     {
         Id = _buf.ReadInt();
         Name = _buf.ReadString();
-        Magic = (game.MagicAttribute)_buf.ReadInt();
-        X6 = _buf.ReadFloat();
-        X8 = _buf.ReadInt();
-        X10 = _buf.ReadString();
-        V2 = ExternalTypeUtil.NewVector2(vec2.Deserializevec2(_buf));
-        T1 = _buf.ReadLong();
-        {int __n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);K2 = new int[__n0];for(var __index0 = 0 ; __index0 < __n0 ; __index0++) { int __e0;__e0 = _buf.ReadInt(); K2[__index0] = __e0;}}
-        {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);K8 = new System.Collections.Generic.Dictionary<int, int>(n0 * 3 / 2);for(var i0 = 0 ; i0 < n0 ; i0++) { int _k0;  _k0 = _buf.ReadInt(); int _v0;  _v0 = _buf.ReadInt();     K8.Add(_k0, _v0);}}
-        {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);K10 = new System.Collections.Generic.List<UnityEngine.Vector3>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { UnityEngine.Vector3 _e0;  _e0 = ExternalTypeUtil.NewVector3(vec3.Deserializevec3(_buf)); K10.Add(_e0);}}
-        {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);K11 = new System.Collections.Generic.List<UnityEngine.Vector4>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { UnityEngine.Vector4 _e0;  _e0 = ExternalTypeUtil.NewVector4(vec4.Deserializevec4(_buf)); K11.Add(_e0);}}
-        if(_buf.ReadBool()){ V11 = ExternalTypeUtil.NewVector3(vec3.Deserializevec3(_buf)); } else { V11 = null; }
+        {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);Magic = new System.Collections.Generic.List<game.MagicAttribute>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { game.MagicAttribute _e0;  _e0 = (game.MagicAttribute)_buf.ReadInt(); Magic.Add(_e0);}}
     }
 
     public static Monster DeserializeMonster(ByteBuf _buf)
@@ -44,33 +34,13 @@ public sealed partial class Monster : Luban.BeanBase
     /// 字段x1
     /// </summary>
     public readonly string Name;
-    public readonly game.MagicAttribute Magic;
-    public readonly float X6;
-    public readonly int X8;
-    public readonly string X10;
-    public readonly UnityEngine.Vector2 V2;
-    public readonly long T1;
-    public readonly int[] K2;
-    public readonly System.Collections.Generic.Dictionary<int, int> K8;
-    public readonly System.Collections.Generic.List<UnityEngine.Vector3> K10;
-    public readonly System.Collections.Generic.List<UnityEngine.Vector4> K11;
-    public readonly UnityEngine.Vector3? V11;
+    public readonly System.Collections.Generic.List<game.MagicAttribute> Magic;
    
     public const int __ID__ = -1393696838;
     public override int GetTypeId() => __ID__;
 
     public  void ResolveRef(Tables tables)
     {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -81,17 +51,7 @@ public sealed partial class Monster : Luban.BeanBase
         return "{ "
         + "id:" + Id + ","
         + "name:" + Name + ","
-        + "magic:" + Magic + ","
-        + "x6:" + X6 + ","
-        + "x8:" + X8 + ","
-        + "x10:" + X10 + ","
-        + "v2:" + V2 + ","
-        + "t1:" + T1 + ","
-        + "k2:" + Luban.StringUtil.CollectionToString(K2) + ","
-        + "k8:" + Luban.StringUtil.CollectionToString(K8) + ","
-        + "k10:" + Luban.StringUtil.CollectionToString(K10) + ","
-        + "k11:" + Luban.StringUtil.CollectionToString(K11) + ","
-        + "v11:" + V11 + ","
+        + "magic:" + Luban.StringUtil.CollectionToString(Magic) + ","
         + "}";
     }
 }
