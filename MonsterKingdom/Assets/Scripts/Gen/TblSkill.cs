@@ -17,29 +17,29 @@ namespace cfg
 /// </summary>
 public partial class TblSkill
 {
-    private readonly System.Collections.Generic.Dictionary<string, Skill> _dataMap;
-    private readonly System.Collections.Generic.List<Skill> _dataList;
+    private readonly System.Collections.Generic.Dictionary<string, SkillCfg> _dataMap;
+    private readonly System.Collections.Generic.List<SkillCfg> _dataList;
     
     public TblSkill(ByteBuf _buf)
     {
-        _dataMap = new System.Collections.Generic.Dictionary<string, Skill>();
-        _dataList = new System.Collections.Generic.List<Skill>();
+        _dataMap = new System.Collections.Generic.Dictionary<string, SkillCfg>();
+        _dataList = new System.Collections.Generic.List<SkillCfg>();
         
         for(int n = _buf.ReadSize() ; n > 0 ; --n)
         {
-            Skill _v;
-            _v = Skill.DeserializeSkill(_buf);
+            SkillCfg _v;
+            _v = SkillCfg.DeserializeSkillCfg(_buf);
             _dataList.Add(_v);
             _dataMap.Add(_v.Id, _v);
         }
     }
 
-    public System.Collections.Generic.Dictionary<string, Skill> DataMap => _dataMap;
-    public System.Collections.Generic.List<Skill> DataList => _dataList;
+    public System.Collections.Generic.Dictionary<string, SkillCfg> DataMap => _dataMap;
+    public System.Collections.Generic.List<SkillCfg> DataList => _dataList;
 
-    public Skill GetOrDefault(string key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public Skill Get(string key) => _dataMap[key];
-    public Skill this[string key] => _dataMap[key];
+    public SkillCfg GetOrDefault(string key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+    public SkillCfg Get(string key) => _dataMap[key];
+    public SkillCfg this[string key] => _dataMap[key];
 
     public void ResolveRef(Tables tables)
     {

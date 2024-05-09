@@ -24,7 +24,7 @@ public class BattleManager : MonoSingleton<BattleManager>
         {
             Debug.Log(data.Name);
         });*/
-        foreach (Skill skill in Main.instance.cfgTables.TblSkill.DataList)
+        foreach (SkillCfg skill in LubanCfg.instance.cfgTables.TblSkill.DataList)
         {
             int[] array = skill.DescriptionVal.ToArray();
             Debug.Log(skill.Id + " " + skill.Name + " " +

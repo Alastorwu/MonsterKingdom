@@ -4,11 +4,11 @@ using Game.Common;
 using Luban;
 using UnityEngine;
 
-public class Main : MonoSingleton<Main>
+public class LubanCfg : MonoSingleton<LubanCfg>
 {
     public Tables cfgTables;
     
-    protected override void Init()
+    public void Init()
     {
         cfgTables = new cfg.Tables(LoadByteBuf);
         Debug.Log("Tables loaded");

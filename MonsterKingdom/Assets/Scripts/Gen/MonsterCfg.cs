@@ -12,35 +12,41 @@ using Luban;
 
 namespace cfg
 {
-public sealed partial class Monster : Luban.BeanBase
+public sealed partial class MonsterCfg : Luban.BeanBase
 {
-    public Monster(ByteBuf _buf) 
+    public MonsterCfg(ByteBuf _buf) 
     {
-        Id = _buf.ReadInt();
+        Id = _buf.ReadString();
         Name = _buf.ReadString();
         {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);Magic = new System.Collections.Generic.List<game.MagicAttribute>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { game.MagicAttribute _e0;  _e0 = (game.MagicAttribute)_buf.ReadInt(); Magic.Add(_e0);}}
+        {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);BornSkills = new System.Collections.Generic.List<string>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { string _e0;  _e0 = _buf.ReadString(); BornSkills.Add(_e0);}}
+        Rating = (game.MonsterRating)_buf.ReadInt();
     }
 
-    public static Monster DeserializeMonster(ByteBuf _buf)
+    public static MonsterCfg DeserializeMonsterCfg(ByteBuf _buf)
     {
-        return new Monster(_buf);
+        return new MonsterCfg(_buf);
     }
 
     /// <summary>
     /// 这是id
     /// </summary>
-    public readonly int Id;
+    public readonly string Id;
     /// <summary>
     /// 字段x1
     /// </summary>
     public readonly string Name;
     public readonly System.Collections.Generic.List<game.MagicAttribute> Magic;
+    public readonly System.Collections.Generic.List<string> BornSkills;
+    public readonly game.MonsterRating Rating;
    
-    public const int __ID__ = -1393696838;
+    public const int __ID__ = -173582774;
     public override int GetTypeId() => __ID__;
 
     public  void ResolveRef(Tables tables)
     {
+        
+        
         
         
         
@@ -52,6 +58,8 @@ public sealed partial class Monster : Luban.BeanBase
         + "id:" + Id + ","
         + "name:" + Name + ","
         + "magic:" + Luban.StringUtil.CollectionToString(Magic) + ","
+        + "bornSkills:" + Luban.StringUtil.CollectionToString(BornSkills) + ","
+        + "rating:" + Rating + ","
         + "}";
     }
 }

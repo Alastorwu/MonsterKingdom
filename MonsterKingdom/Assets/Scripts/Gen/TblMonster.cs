@@ -17,29 +17,29 @@ namespace cfg
 /// </summary>
 public partial class TblMonster
 {
-    private readonly System.Collections.Generic.Dictionary<int, Monster> _dataMap;
-    private readonly System.Collections.Generic.List<Monster> _dataList;
+    private readonly System.Collections.Generic.Dictionary<string, MonsterCfg> _dataMap;
+    private readonly System.Collections.Generic.List<MonsterCfg> _dataList;
     
     public TblMonster(ByteBuf _buf)
     {
-        _dataMap = new System.Collections.Generic.Dictionary<int, Monster>();
-        _dataList = new System.Collections.Generic.List<Monster>();
+        _dataMap = new System.Collections.Generic.Dictionary<string, MonsterCfg>();
+        _dataList = new System.Collections.Generic.List<MonsterCfg>();
         
         for(int n = _buf.ReadSize() ; n > 0 ; --n)
         {
-            Monster _v;
-            _v = Monster.DeserializeMonster(_buf);
+            MonsterCfg _v;
+            _v = MonsterCfg.DeserializeMonsterCfg(_buf);
             _dataList.Add(_v);
             _dataMap.Add(_v.Id, _v);
         }
     }
 
-    public System.Collections.Generic.Dictionary<int, Monster> DataMap => _dataMap;
-    public System.Collections.Generic.List<Monster> DataList => _dataList;
+    public System.Collections.Generic.Dictionary<string, MonsterCfg> DataMap => _dataMap;
+    public System.Collections.Generic.List<MonsterCfg> DataList => _dataList;
 
-    public Monster GetOrDefault(int key) => _dataMap.TryGetValue(key, out var v) ? v : null;
-    public Monster Get(int key) => _dataMap[key];
-    public Monster this[int key] => _dataMap[key];
+    public MonsterCfg GetOrDefault(string key) => _dataMap.TryGetValue(key, out var v) ? v : null;
+    public MonsterCfg Get(string key) => _dataMap[key];
+    public MonsterCfg this[string key] => _dataMap[key];
 
     public void ResolveRef(Tables tables)
     {

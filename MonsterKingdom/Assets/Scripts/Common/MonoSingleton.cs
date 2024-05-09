@@ -20,15 +20,9 @@ namespace Game.Common
             }
         }
 
-        protected virtual void Init()
-        {
-            
-        }
-
         private void Awake()
         {
             DontDestroyOnLoad(gameObject);
-            Init();
         }
 
         private void OnDestroy()
