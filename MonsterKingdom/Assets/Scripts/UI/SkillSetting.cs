@@ -1,18 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using cfg;
 using UnityEngine;
 
 public class SkillSetting : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private GameObject _monsterCardOrigin;
+    private void Awake()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        foreach (MonsterCfg monsterCfg in LubanCfg.instance.cfgTables.TblMonster.DataList)
+        {
+            MonsterCardWidget monsterCardWidget 
+                = Instantiate(_monsterCardOrigin, transform).GetComponent<MonsterCardWidget>();
+            monsterCardWidget.MonsterId = monsterCfg.Id;
+        }
     }
 }
