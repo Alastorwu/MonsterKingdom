@@ -4,7 +4,7 @@ using Game.Common;
 using Luban;
 using UnityEngine;
 
-public class LubanCfg : MonoSingleton<LubanCfg>
+public class LubanCfg : Singleton<LubanCfg>
 {
     public Tables cfgTables;
     
