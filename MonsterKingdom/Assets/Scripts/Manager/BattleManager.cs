@@ -1,9 +1,6 @@
-using System.Linq;
-using cfg;
 using Game.Common;
-using UnityEngine;
 
-public class BattleManager : MonoSingleton<BattleManager>
+public class BattleManager : Singleton<BattleManager>
 {
     private int _round = 0;
     public int round
@@ -16,23 +13,4 @@ public class BattleManager : MonoSingleton<BattleManager>
         }
     }
 
-    
-    private void Start()
-    {
-        round = 0;
-        /*Main.instance.cfgTables.TblMonster.DataList.ForEach(data =>
-        {
-            Debug.Log(data.Name);
-        });*/
-        foreach (SkillCfg skill in LubanCfg.instance.cfgTables.TblSkill.DataList)
-        {
-            int[] array = skill.DescriptionVal.ToArray();
-            Debug.Log(skill.Id + " " + skill.Name + " " +
-                      string.Format(skill.Description, array.Cast<object>().ToArray()));
-        }
-        /*Main.instance.cfgTables.TbDefineFromExcel2.DataList.ForEach(data =>
-        {
-            Debug.Log(data.Id);
-        });*/
-    }
 }

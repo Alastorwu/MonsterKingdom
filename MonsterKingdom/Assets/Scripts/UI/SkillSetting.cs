@@ -1,8 +1,9 @@
 using System;
 using cfg;
+using Game.Common;
 using UnityEngine;
 
-public class SkillSetting : MonoBehaviour
+public class SkillSetting : UIPanelBase
 {
     [SerializeField]
     private GameObject _monsterCardOrigin;
