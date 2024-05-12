@@ -13,7 +13,7 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if (_panelDict.ContainsKey(panelName))
         {
-            _panelDict[panelName].selfGameObject.SetActive(true);
+            _panelDict[panelName].gameObject.SetActive(true);
         }
         else
         {

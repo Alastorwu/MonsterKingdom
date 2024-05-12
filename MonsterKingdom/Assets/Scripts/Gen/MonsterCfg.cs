@@ -18,6 +18,8 @@ public sealed partial class MonsterCfg : Luban.BeanBase
     {
         Id = _buf.ReadString();
         Name = _buf.ReadString();
+        Hp = _buf.ReadInt();
+        Speed = _buf.ReadInt();
         {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);Magic = new System.Collections.Generic.List<game.MagicAttribute>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { game.MagicAttribute _e0;  _e0 = (game.MagicAttribute)_buf.ReadInt(); Magic.Add(_e0);}}
         {int n0 = System.Math.Min(_buf.ReadSize(), _buf.Size);BornSkills = new System.Collections.Generic.List<string>(n0);for(var i0 = 0 ; i0 < n0 ; i0++) { string _e0;  _e0 = _buf.ReadString(); BornSkills.Add(_e0);}}
         Rating = (game.MonsterRating)_buf.ReadInt();
@@ -36,6 +38,8 @@ public sealed partial class MonsterCfg : Luban.BeanBase
     /// 字段x1
     /// </summary>
     public readonly string Name;
+    public readonly int Hp;
+    public readonly int Speed;
     public readonly System.Collections.Generic.List<game.MagicAttribute> Magic;
     public readonly System.Collections.Generic.List<string> BornSkills;
     public readonly game.MonsterRating Rating;
@@ -50,6 +54,8 @@ public sealed partial class MonsterCfg : Luban.BeanBase
         
         
         
+        
+        
     }
 
     public override string ToString()
@@ -57,6 +63,8 @@ public sealed partial class MonsterCfg : Luban.BeanBase
         return "{ "
         + "id:" + Id + ","
         + "name:" + Name + ","
+        + "hp:" + Hp + ","
+        + "speed:" + Speed + ","
         + "magic:" + Luban.StringUtil.CollectionToString(Magic) + ","
         + "bornSkills:" + Luban.StringUtil.CollectionToString(BornSkills) + ","
         + "rating:" + Rating + ","
