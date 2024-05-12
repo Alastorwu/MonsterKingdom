@@ -41,8 +41,8 @@ public class MonsterCardWidget : MonoBehaviour
         MonsterCfg monsterCfg = LubanCfg.instance.cfgTables.TblMonster?.GetOrDefault(_monsterId);
         if (monsterCfg == null) return;
         _name.text = monsterCfg.Name;
-        _hp.text = monsterCfg.Hp.ToString();
-        _speed.text = monsterCfg.Speed.ToString();
+        _hp.text = $"HP {monsterCfg.Hp}";
+        _speed.text = $"SPEED {monsterCfg.Speed}";
         Transform magicAttrOrigin = _magicAttributeLayoutGroup.transform.GetChild(0);
         magicAttrOrigin.gameObject.SetActive(false);
         foreach (var magic in monsterCfg.Magic)
@@ -176,7 +176,7 @@ public class MonsterCardWidget : MonoBehaviour
             skill.SetActive(true);
             TextMeshProUGUI skillText = skill.GetComponentInChildren<TextMeshProUGUI>();
             string skillStr =
-                $"{skillCfg.Name}:{string.Format(skillCfg.Description, skillCfg.DescriptionVal.Cast<object>().ToArray())}";
+                $"{skillCfg.Name}\n  {string.Format(skillCfg.Description, skillCfg.DescriptionVal.Cast<object>().ToArray())}";
             skillText.text = skillStr;
         }
     }
