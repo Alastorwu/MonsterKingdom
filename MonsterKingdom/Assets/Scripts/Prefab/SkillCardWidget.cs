@@ -4,6 +4,7 @@ using cfg;
 using cfg.game;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillCardWidget : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class SkillCardWidget : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _name;
     [SerializeField]
-    private TextMeshProUGUI _consume;
+    private VerticalLayoutGroup _magicAttributeLayoutGroup;
     [SerializeField]
     private TextMeshProUGUI _desc;
 
@@ -27,38 +28,34 @@ public class SkillCardWidget : MonoBehaviour
         }
     }
     
-    private void Awake()
-    {
-#if UNITY_EDITOR
-        LubanCfg.instance.Init();
-#endif
-        Init();
-    }
-
     public void Init()
     {
         if (string.IsNullOrWhiteSpace(_skillId)) return;
         SkillCfg skillCfg = LubanCfg.instance.cfgTables.TblSkill?.GetOrDefault(_skillId);
         if (skillCfg == null) return;
         _name.text = skillCfg.Name;
-        string consumeString = "";
-        if (skillCfg.PointType != SkillConsumePointType.none)
+        string consumeString = "消耗:";
+        switch (skillCfg.PointType)
         {
-            consumeString += skillCfg.PointType switch
-            {
-                SkillConsumePointType.point => "点数",
-                SkillConsumePointType.kindPoint => "相同点数",
-                SkillConsumePointType.straight => "顺子",
-                _ => ""
-            };
-            consumeString += " " + skillCfg.PointConsume;
+            case SkillConsumePointType.point:
+                consumeString += $"{skillCfg.PointConsume}点";
+                break;
+            case SkillConsumePointType.kind:
+                consumeString += $"{skillCfg.PointConsume}个相同点数";
+                break;
+            case SkillConsumePointType.kindSix:
+                consumeString += $"{skillCfg.PointConsume}个6点";
+                break;
+            case SkillConsumePointType.straight:
+                consumeString += $"{skillCfg.PointConsume}个顺子";
+                break;
         }
 
         if (skillCfg.MagicConsume.Count > 0)
         {
             consumeString += " " + string.Join(" ", skillCfg.MagicConsume);
         }
-        _consume.text = consumeString;
+        // _consume.text = consumeString;
         _desc.text = string.Format(skillCfg.Description, skillCfg.DescriptionVal.Cast<object>().ToArray());
     }
 }

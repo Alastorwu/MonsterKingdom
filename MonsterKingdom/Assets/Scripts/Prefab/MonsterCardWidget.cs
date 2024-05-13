@@ -174,9 +174,29 @@ public class MonsterCardWidget : MonoBehaviour
             if (skillCfg == null) continue;
             GameObject skill = Instantiate(skillOrigin.gameObject, _skillLayoutGroup.transform);
             skill.SetActive(true);
+            string consumeString = "消耗:";
+            switch (skillCfg.PointType)
+            {
+                case SkillConsumePointType.point:
+                    consumeString += $"{skillCfg.PointConsume}点";
+                    break;
+                case SkillConsumePointType.kind:
+                    consumeString += $"{skillCfg.PointConsume}个相同点数";
+                    break;
+                case SkillConsumePointType.kindSix:
+                    consumeString += $"{skillCfg.PointConsume}个6点";
+                    break;
+                case SkillConsumePointType.straight:
+                    consumeString += $"{skillCfg.PointConsume}个顺子";
+                    break;
+                default:
+                    consumeString = "";
+                    break;
+            }
+
             TextMeshProUGUI skillText = skill.GetComponentInChildren<TextMeshProUGUI>();
             string skillStr =
-                $"{skillCfg.Name}\n  {string.Format(skillCfg.Description, skillCfg.DescriptionVal.Cast<object>().ToArray())}";
+                $"{skillCfg.Name}  {consumeString}\n  {string.Format(skillCfg.Description, skillCfg.DescriptionVal.Cast<object>().ToArray())}";
             skillText.text = skillStr;
         }
     }

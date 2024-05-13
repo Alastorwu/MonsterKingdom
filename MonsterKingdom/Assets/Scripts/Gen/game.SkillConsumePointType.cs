@@ -22,9 +22,9 @@ namespace cfg.game
         /// </summary>
         point = 1,
         /// <summary>
-        /// 相同点数
+        /// 相同点数6
         /// </summary>
-        kindPoint = 2,
+        kindSix = 2,
         /// <summary>
         /// 任意相同点数
         /// </summary>
