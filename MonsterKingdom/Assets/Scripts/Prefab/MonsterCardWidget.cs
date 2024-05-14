@@ -166,6 +166,7 @@ public class MonsterCardWidget : MonoBehaviour
             }
             
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_magicAttributeLayoutGroup.GetComponent<RectTransform>());
         Transform skillOrigin = _skillLayoutGroup.transform.GetChild(0);
         skillOrigin.gameObject.SetActive(false);
         foreach (var skillId in monsterCfg.BornSkills)
@@ -199,5 +200,6 @@ public class MonsterCardWidget : MonoBehaviour
                 $"{skillCfg.Name}  {consumeString}\n  {string.Format(skillCfg.Description, skillCfg.DescriptionVal.Cast<object>().ToArray())}";
             skillText.text = skillStr;
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_skillLayoutGroup.GetComponent<RectTransform>());
     }
 }

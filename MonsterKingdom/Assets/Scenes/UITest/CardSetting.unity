@@ -282,6 +282,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 897177296, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 897177296, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4548343949358816149, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -370,9 +378,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardSettingPanel
       objectReference: {fileID: 0}
-    - target: {fileID: 4548343949358816170, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 1522704905}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}

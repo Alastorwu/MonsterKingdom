@@ -25,6 +25,7 @@ public class SkillSetting : UIPanelBase
                 = Instantiate(_monsterCardOrigin, _monsterCardLayoutGroup.transform).GetComponent<MonsterCardWidget>();
             monsterCardWidget.MonsterId = monsterCfg.Id;
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_monsterCardLayoutGroup.GetComponent<RectTransform>());
 
         foreach (var skillCfg in LubanCfg.instance.cfgTables.TblSkill.DataList)
         {
@@ -32,5 +33,7 @@ public class SkillSetting : UIPanelBase
                 = Instantiate(_skillCardOrigin, _skillCardLayoutGroup.transform).GetComponent<SkillCardWidget>();
             skillCardWidget.SkillId = skillCfg.Id;
         }
+        
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_skillCardLayoutGroup.GetComponent<RectTransform>());
     }
 }

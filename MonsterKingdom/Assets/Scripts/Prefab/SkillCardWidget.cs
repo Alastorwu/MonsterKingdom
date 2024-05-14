@@ -174,8 +174,9 @@ public class SkillCardWidget : MonoBehaviour
                     magicAttr.GetComponent<Image>().color = Color.magenta;
                     break;
             }
-            
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_magicAttributeLayoutGroup.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(_consumeTxt.transform.parent.GetComponent<RectTransform>());
         _desc.text = string.Format(skillCfg.Description, skillCfg.DescriptionVal.Cast<object>().ToArray());
     }
 }
