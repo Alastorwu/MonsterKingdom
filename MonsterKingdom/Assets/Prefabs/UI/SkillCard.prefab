@@ -115,7 +115,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 33.68, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 14}
   m_Pivot: {x: 1, y: 1}
 --- !u!222 &1923108022291394351
@@ -358,7 +358,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skillId: 
   _name: {fileID: 4058255214877977195}
-  _magicAttributeLayoutGroup: {fileID: 0}
+  _consumeTxt: {fileID: 6877149847225820378}
+  _magicAttributeLayoutGroup: {fileID: 4402596113066434845}
   _desc: {fileID: 1738713419386629843}
 --- !u!1 &3381885006868028789
 GameObject:
@@ -398,7 +399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.08000183, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 109, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6338207730663523559
@@ -798,7 +799,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u706B\u7403\u672F"
+  m_text: "\u970D\u53BB\u75C5"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2f8d8c262ebbfc248be5133646480e67, type: 2}
   m_sharedMaterial: {fileID: -5800389301261939065, guid: 2f8d8c262ebbfc248be5133646480e67, type: 2}
@@ -882,7 +883,7 @@ GameObject:
   - component: {fileID: 6353067144805265155}
   - component: {fileID: 2470037719138255991}
   m_Layer: 5
-  m_Name: skillText
+  m_Name: consumeTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

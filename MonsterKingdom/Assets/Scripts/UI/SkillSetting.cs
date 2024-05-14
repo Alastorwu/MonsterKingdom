@@ -7,9 +7,15 @@ public class SkillSetting : UIPanelBase
 {
     [SerializeField]
     private GameObject _monsterCardOrigin;
+    
+    [SerializeField]
+    private GameObject _skillCardOrigin;
 
     [SerializeField]
     private HorizontalLayoutGroup _monsterCardLayoutGroup;
+    
+    [SerializeField]
+    private HorizontalLayoutGroup _skillCardLayoutGroup;
     
     private void Awake()
     {
@@ -18,6 +24,13 @@ public class SkillSetting : UIPanelBase
             MonsterCardWidget monsterCardWidget 
                 = Instantiate(_monsterCardOrigin, _monsterCardLayoutGroup.transform).GetComponent<MonsterCardWidget>();
             monsterCardWidget.MonsterId = monsterCfg.Id;
+        }
+
+        foreach (var skillCfg in LubanCfg.instance.cfgTables.TblSkill.DataList)
+        {
+            SkillCardWidget skillCardWidget 
+                = Instantiate(_skillCardOrigin, _skillCardLayoutGroup.transform).GetComponent<SkillCardWidget>();
+            skillCardWidget.SkillId = skillCfg.Id;
         }
     }
 }
