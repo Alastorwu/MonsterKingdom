@@ -378,5 +378,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardSettingPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4548343949358816170, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1522704905}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}

@@ -16,7 +16,30 @@ namespace Manager
             /*SaveDataManager.instance.SaveDatas[0] = new SaveData
             {
                 name = "test",
-                saveTime = System.DateTimeOffset.Now.ToUnixTimeSeconds()
+                saveTime = System.DateTimeOffset.Now.ToUnixTimeSeconds(),
+                saveTroops = new SaveData.SaveTroop[1]
+                {
+                    new()
+                    {
+                        saveMonsters = new SaveData.SaveMonster[3]
+                        {
+                            new()
+                            {
+                                cfgId = "1",
+                                skillCfgIds = new int[]{1,2,3}
+                            },new()
+                            {
+                                cfgId = "2",
+                                skillCfgIds = new int[]{1,2,3}
+                            },new()
+                            {
+                                cfgId = "3",
+                                skillCfgIds = new int[]{1,2,3}
+                            }
+                        }
+                    }
+                }
+                
             };
             SaveDataManager.instance.Save();*/
             /*for (var i = 0; i < SaveDataManager.instance.SaveDatas.Length; i++)
