@@ -21,11 +21,13 @@ public partial class Tables
     /// 技能表
     /// </summary>
     public TblSkill TblSkill {get; }
+    public TblBuff TblBuff {get; }
 
     public Tables(System.Func<string, ByteBuf> loader)
     {
         TblMonster = new TblMonster(loader("tblmonster"));
         TblSkill = new TblSkill(loader("tblskill"));
+        TblBuff = new TblBuff(loader("tblbuff"));
         ResolveRef();
     }
     
@@ -33,6 +35,7 @@ public partial class Tables
     {
         TblMonster.ResolveRef(this);
         TblSkill.ResolveRef(this);
+        TblBuff.ResolveRef(this);
     }
 }
 
