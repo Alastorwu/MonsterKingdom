@@ -85,12 +85,6 @@ namespace Manager
             
         }
 
-        private void Start()
-        {
-            _startButton.onClick.AddListener(StartGame);
-            
-        }
-
         private void StartGame()
         {
             _startButton.gameObject.SetActive(false);
