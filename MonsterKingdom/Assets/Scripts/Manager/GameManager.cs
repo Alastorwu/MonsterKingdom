@@ -1,4 +1,6 @@
-﻿using Game.Common;
+﻿using System.Collections.Generic;
+using Game.Common;
+using Model;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,14 +12,20 @@ namespace Manager
         [SerializeField]
         private Button _startButton;
         
+        public List<Team> teams = new();
+        
+        
         private void Awake()
         {
             SaveDataManager.instance.Init();
-            /*SaveDataManager.instance.SaveDatas[0] = new SaveData
+            LubanCfg.instance.Init();
+            
+            
+            SaveDataManager.instance.SaveDatas[0] = new SaveData
             {
                 name = "test",
                 saveTime = System.DateTimeOffset.Now.ToUnixTimeSeconds(),
-                saveTroops = new SaveData.SaveTroop[1]
+                saveTeams = new SaveData.SaveTeam[1]
                 {
                     new()
                     {
@@ -41,24 +49,53 @@ namespace Manager
                 }
                 
             };
-            SaveDataManager.instance.Save();*/
+            SaveDataManager.instance.Save();
             /*for (var i = 0; i < SaveDataManager.instance.SaveDatas.Length; i++)
             {
                 if (SaveDataManager.instance.SaveDatas[i] == null) continue;
                 Debug.Log(SaveDataManager.instance.SaveDatas[i].name);
             }*/
-            LubanCfg.instance.Init();
+            if (SaveDataManager.instance.SaveDatas[0] != null)
+            {
+                foreach (var saveTeam in SaveDataManager.instance.SaveDatas[0].saveTeams)
+                {
+                    Team team = new Team();
+                    for (int i = 0; i < saveTeam.saveMonsters.Length; i++)
+                    {
+                        team.Monsters[i] = new Monster()
+                        {
+                            CfgId = saveTeam.saveMonsters[i].cfgId,
+                            Skills = { new Skill()
+                            {
+                                CfgId = saveTeam.saveMonsters[i].skillCfgIds[0].ToString()
+                            }}
+                        };
+                    }
+                    teams.Add(team);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    teams.Add(new Team());
+                }
+            }
+
+            
         }
 
         private void Start()
         {
-            _startButton?.onClick.AddListener(StartGame);
+            _startButton.onClick.AddListener(StartGame);
             
         }
 
         private void StartGame()
         {
+            _startButton.gameObject.SetActive(false);
             SceneManager.LoadScene("BattleScene");
+            BattleManager.instance.Init();
         }
     }
 }

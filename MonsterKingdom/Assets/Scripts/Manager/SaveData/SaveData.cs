@@ -1,14 +1,13 @@
 
-using System.Collections.Generic;
 
 [System.Serializable]
 public class SaveData
 {
     public string name;
     public long saveTime;
-    public SaveTroop[] saveTroops; 
+    public SaveTeam[] saveTeams; 
     [System.Serializable]
-    public struct SaveTroop
+    public struct SaveTeam
     {
         public SaveMonster[] saveMonsters;
     }
