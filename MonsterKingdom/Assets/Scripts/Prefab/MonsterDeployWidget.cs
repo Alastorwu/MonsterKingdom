@@ -14,21 +14,21 @@ public class MonsterDeployWidget : MonoBehaviour
     
     public void Init(string monsterId,Action callback = null)
     {
+        gameObject.SetActive(true);
+        _deployButton.onClick.RemoveAllListeners();
+        _deployButton.onClick.AddListener(() =>
+        {
+            callback?.Invoke();
+        });
         _monsterId = monsterId;
         if (string.IsNullOrWhiteSpace(monsterId))
         { 
             _monsterCardWidget.gameObject.SetActive(false);
-            _deployButton.gameObject.SetActive(true);
-            _deployButton.onClick.AddListener(() =>
-            {
-                callback?.Invoke();
-            });
         }
         else
         {
             _monsterCardWidget.gameObject.SetActive(true);
             _monsterCardWidget.MonsterId = _monsterId;
-            _deployButton.gameObject.SetActive(false);
         }
     }
 }

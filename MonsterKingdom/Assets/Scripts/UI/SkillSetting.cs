@@ -65,7 +65,7 @@ public class SkillSetting : UIPanelBase
             if (_monsterDeployWidgets.Length <= i ) continue;
             if(_monsterDeployWidgets[i] == null) continue;
             var index = i;
-            if (GameManager.instance.teams[0].Monsters[i] == null
+            /*if (GameManager.instance.teams[0].Monsters[i] == null
                 || string.IsNullOrWhiteSpace(GameManager.instance.teams[0].Monsters[i].CfgId))
             {
                 _monsterDeployWidgets[i].Init(null, () =>
@@ -80,14 +80,19 @@ public class SkillSetting : UIPanelBase
                     {
                         ShowMonsterCardChoose(index);
                     });
-            }
+            }*/
+            _monsterDeployWidgets[i].Init(GameManager.instance.teams[0].Monsters[i].CfgId,
+                () =>
+                {
+                    ShowMonsterCardChoose(index);
+                });
         }
     }
     
     private void ShowMonsterCardChoose(int index)
     {
         _monsterCardChoose.gameObject.SetActive(true);
-        Transform content = _monsterCardChoose.transform.GetChild(0).GetChild(0);
+        Transform content = _monsterCardChoose.transform.GetChild(0).GetChild(0).GetChild(0);
         
         foreach (MonsterCfg monsterCfg in LubanCfg.instance.cfgTables.TblMonster.DataList)
         {
@@ -102,6 +107,7 @@ public class SkillSetting : UIPanelBase
                     CfgId = monsterCfg.Id
                 };
                 _monsterDeployWidgets[index].Init(monsterCfg.Id);
+                _monsterCardChoose.gameObject.SetActive(false);
                 LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
             
             });

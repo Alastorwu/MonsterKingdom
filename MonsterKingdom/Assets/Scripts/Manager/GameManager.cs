@@ -19,7 +19,7 @@ namespace Manager
             LubanCfg.instance.Init();
             
             
-            SaveDataManager.instance.SaveDatas[0] = new SaveData
+            /*SaveDataManager.instance.SaveDatas[0] = new SaveData
             {
                 name = "test",
                 saveTime = System.DateTimeOffset.Now.ToUnixTimeSeconds(),
@@ -47,12 +47,7 @@ namespace Manager
                 }
                 
             };
-            SaveDataManager.instance.Save();
-            /*for (var i = 0; i < SaveDataManager.instance.SaveDatas.Length; i++)
-            {
-                if (SaveDataManager.instance.SaveDatas[i] == null) continue;
-                Debug.Log(SaveDataManager.instance.SaveDatas[i].name);
-            }*/
+            SaveDataManager.instance.Save();*/
             if (SaveDataManager.instance.SaveDatas[0] != null)
             {
                 foreach (var saveTeam in SaveDataManager.instance.SaveDatas[0].saveTeams)

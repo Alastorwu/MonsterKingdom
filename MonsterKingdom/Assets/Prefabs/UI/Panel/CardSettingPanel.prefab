@@ -1010,7 +1010,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _monsterCardOrigin: {fileID: 4431844000616545826, guid: 87c935242f769564288a5da4a23c0255, type: 3}
   _skillCardOrigin: {fileID: 2705577280859333663, guid: 542ad69745af0514cb7cbcaadb97844f, type: 3}
-  _monsterCardChoose: {fileID: 4242274476889740038}
+  _monsterCardChoose: {fileID: 6646926436695405656}
   _skillCardChoose: {fileID: 8627542471881868410}
   _monsterDeployWidgets:
   - {fileID: 5968464259098091587}
