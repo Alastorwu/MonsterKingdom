@@ -45,6 +45,10 @@ public class MonsterCardWidget : MonoBehaviour
         _speed.text = $"SPEED {monsterCfg.Speed}";
         Transform magicAttrOrigin = _magicAttributeLayoutGroup.transform.GetChild(0);
         magicAttrOrigin.gameObject.SetActive(false);
+        for (int i = 1; i < _magicAttributeLayoutGroup.transform.childCount; i++)
+        {
+            Destroy(_magicAttributeLayoutGroup.transform.GetChild(i).gameObject);
+        }
         foreach (var magic in monsterCfg.Magic)
         {
             GameObject magicAttr = Instantiate(magicAttrOrigin.gameObject, _magicAttributeLayoutGroup.transform);
@@ -55,6 +59,10 @@ public class MonsterCardWidget : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(_magicAttributeLayoutGroup.GetComponent<RectTransform>());
         Transform skillOrigin = _skillLayoutGroup.transform.GetChild(0);
         skillOrigin.gameObject.SetActive(false);
+        for (int i = 1; i < _skillLayoutGroup.transform.childCount; i++)
+        {
+            Destroy(_skillLayoutGroup.transform.GetChild(i).gameObject);
+        }
         foreach (var skillId in monsterCfg.BornSkills)
         {
             SkillCfg skillCfg = LubanCfg.instance.cfgTables.TblSkill?.GetOrDefault(skillId);

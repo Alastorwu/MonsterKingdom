@@ -42,18 +42,27 @@ public class UIManager : MonoSingleton<UIManager>
     private void Start()
     {
         // SceneManager.LoadSceneAsync("BattleScene");
-        _loadingButton.onClick.RemoveAllListeners();
-        _loadingButton.onClick.AddListener(() =>
+        if (_loadingButton!=null)
         {
-            SceneManager.LoadSceneAsync("BattleScene").completed += operation =>
+            _loadingButton.onClick.RemoveAllListeners();
+            _loadingButton.onClick.AddListener(() =>
             {
-                if (operation.isDone)
+                SceneManager.LoadSceneAsync("BattleScene").completed += operation =>
                 {
-                    _loadingButton.gameObject.SetActive(false);
-                    ShowPanel("CardSettingPanel");
-                }
-            };
-        });
+                    if (operation.isDone)
+                    {
+                        _loadingButton.gameObject.SetActive(false);
+                        ShowPanel("CardSettingPanel");
+                    }
+                };
+            });
+        }
+        else
+        {
+            Debug.LogError("LoadingButton is null");
+        }
+
+        
     }
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
