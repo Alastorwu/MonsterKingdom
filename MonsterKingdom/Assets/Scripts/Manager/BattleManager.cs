@@ -19,4 +19,8 @@ public class BattleManager : MonoSingleton<BattleManager>
         //UIManager.instance.ShowPanel("CardSettingPanel");
     }
 
+    private void Start()
+    {
+        UIManager.instance.ShowPanel("CardSettingPanel");
+    }
 }

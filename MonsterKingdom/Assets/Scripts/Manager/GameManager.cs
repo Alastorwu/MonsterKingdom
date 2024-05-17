@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game.Common;
 using Model;
 using UnityEngine;
@@ -9,9 +10,6 @@ namespace Manager
 {
     public class GameManager : MonoSingleton<GameManager>
     {
-        [SerializeField]
-        private Button _startButton;
-        
         public List<Team> teams = new();
         
         
@@ -85,11 +83,14 @@ namespace Manager
             
         }
 
+        private void Start()
+        {
+        }
+
         private void StartGame()
         {
-            _startButton.gameObject.SetActive(false);
-            SceneManager.LoadScene("BattleScene");
-            BattleManager.instance.Init();
+            // _startButton.gameObject.SetActive(false);
+            // SceneManager.LoadSceneAsync("BattleScene");
         }
     }
 }
