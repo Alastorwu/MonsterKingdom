@@ -55,6 +55,10 @@ public class SkillCardWidget : MonoBehaviour
         _consumeTxt.text = consumeString;
         Transform magicAttrOrigin = _magicAttributeLayoutGroup.transform.GetChild(0);
         magicAttrOrigin.gameObject.SetActive(false);
+        for (int i = 1; i < _magicAttributeLayoutGroup.transform.childCount; i++)
+        {
+            Destroy(_magicAttributeLayoutGroup.transform.GetChild(i).gameObject);
+        }
         foreach (var magic in skillCfg.MagicConsume)
         {
             GameObject magicAttr = Instantiate(magicAttrOrigin.gameObject, _magicAttributeLayoutGroup.transform);
