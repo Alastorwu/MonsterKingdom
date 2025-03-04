@@ -329,6 +329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillCard
       objectReference: {fileID: 0}
+    - target: {fileID: 4058255214877977195, guid: 542ad69745af0514cb7cbcaadb97844f, type: 3}
+      propertyPath: m_text
+      value: "\u649E\u51FB"
+      objectReference: {fileID: 0}
     - target: {fileID: 4888056931062568036, guid: 542ad69745af0514cb7cbcaadb97844f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

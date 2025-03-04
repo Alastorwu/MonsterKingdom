@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class UIManager : MonoSingleton<UIManager>
 {
-    [SerializeField]
-    private List<GameObject> _panelList;
     
     [SerializeField]
     private Button _loadingButton;
@@ -24,11 +22,11 @@ public class UIManager : MonoSingleton<UIManager>
         }
         else
         {
-            foreach (GameObject panelPrefab in _panelList)
+            UIPanelsSo panelsSo = Resources.Load<UIPanelsSo>($"SettingAssets/UIPanel");
+            foreach (UIPanelBase panelPrefab in panelsSo.uIPanels)
             {
-                if (!panelPrefab.TryGetComponent(out UIPanelBase uiPanel)) continue;
-                if(uiPanel.name != panelName) continue;
-                GameObject panel = Instantiate(panelPrefab,transform);
+                if(panelPrefab.name != panelName) continue;
+                UIPanelBase panel = Instantiate(panelPrefab,transform);
                 RectTransform rectTransform = panel.GetComponent<RectTransform>();
                 rectTransform.localScale = Vector3.one;
                 
@@ -41,27 +39,6 @@ public class UIManager : MonoSingleton<UIManager>
     
     private void Start()
     {
-        // SceneManager.LoadSceneAsync("BattleScene");
-        if (_loadingButton!=null)
-        {
-            _loadingButton.onClick.RemoveAllListeners();
-            _loadingButton.onClick.AddListener(() =>
-            {
-                SceneManager.LoadSceneAsync("BattleScene").completed += operation =>
-                {
-                    if (operation.isDone)
-                    {
-                        _loadingButton.gameObject.SetActive(false);
-                        ShowPanel("CardSettingPanel");
-                    }
-                };
-            });
-        }
-        else
-        {
-            Debug.LogError("LoadingButton is null");
-        }
-
         
     }
     
