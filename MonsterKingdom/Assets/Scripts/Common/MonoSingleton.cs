@@ -21,7 +21,7 @@ namespace Game.Common
 
         /*private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
+            if (_instance == null) _instance = FindObjectOfType<T>();
         }*/
 
         private void OnDestroy()

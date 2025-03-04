@@ -6,6 +6,8 @@ public class MonsterDeployWidget : MonoBehaviour
 {
     private string _monsterId;
     
+    public string monsterId => _monsterId;
+    
     [SerializeField]
     private Image _deployImage;
     

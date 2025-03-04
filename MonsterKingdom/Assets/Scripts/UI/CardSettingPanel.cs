@@ -4,6 +4,7 @@ using cfg.game;
 using Game.Common;
 using Manager;
 using Model;
+using UI;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,7 +12,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Button = UnityEngine.UI.Button;
 
-public class SkillSetting : UIPanelBase
+public class CardSettingPanel : UIPanelBase
 {
     [SerializeField]
     private GameObject _monsterCardOrigin;
@@ -103,30 +104,43 @@ public class SkillSetting : UIPanelBase
     private UnityAction ShowMonsterCardChoose(int index)
     {
         return () => { 
-            _monsterCardChoose.gameObject.SetActive(true);
-            Transform content = _monsterCardChoose.transform.GetChild(0).GetChild(0);
-            for (int i = 0; i < content.childCount; i++)
+            
+            if (_monsterDeployWidgets[index].monsterId != null)
             {
-                Destroy(content.GetChild(i).gameObject);
-            }
-            foreach (MonsterCfg monsterCfg in LubanCfg.instance.cfgTables.TblMonster.DataList)
-            {
-                MonsterCardWidget monsterCardWidget 
-                    = Instantiate(_monsterCardOrigin, content).GetComponent<MonsterCardWidget>();
-                monsterCardWidget.MonsterId = monsterCfg.Id;
-                Button monsterCardButton = monsterCardWidget.AddComponent<Button>();
-                monsterCardButton.onClick.AddListener(() =>
+                UIManager.instance.ShowPanel<CardChooseMenuPanel>(new CardChooseMenuData()
                 {
-                    GameManager.instance.teams[0].Monsters[index] = new Monster
-                    {
-                        CfgId = monsterCfg.Id
-                    };
-                    _monsterDeployWidgets[index].SetMonsterId(monsterCfg.Id);
-                    _monsterCardChoose.gameObject.SetActive(false);
-                    LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+                    pos = Input.mousePosition
                 });
             }
-            LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+            else
+            {
+                _monsterCardChoose.gameObject.SetActive(true);
+                Transform content = _monsterCardChoose.transform.GetChild(0).GetChild(0);
+                for (int i = 0; i < content.childCount; i++)
+                {
+                    Destroy(content.GetChild(i).gameObject);
+                }
+                foreach (MonsterCfg monsterCfg in LubanCfg.instance.cfgTables.TblMonster.DataList)
+                {
+                    MonsterCardWidget monsterCardWidget 
+                        = Instantiate(_monsterCardOrigin, content).GetComponent<MonsterCardWidget>();
+                    monsterCardWidget.MonsterId = monsterCfg.Id;
+                    Button monsterCardButton = monsterCardWidget.AddComponent<Button>();
+                    monsterCardButton.onClick.AddListener(() =>
+                    {
+                        GameManager.instance.teams[0].Monsters[index] = new Monster
+                        {
+                            CfgId = monsterCfg.Id
+                        };
+                        _monsterDeployWidgets[index].SetMonsterId(monsterCfg.Id);
+                        _monsterCardChoose.gameObject.SetActive(false);
+                        LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+                    });
+                }
+                LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+            }
+           
+            
         };
     }
 }

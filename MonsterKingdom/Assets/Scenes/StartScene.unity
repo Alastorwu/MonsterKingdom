@@ -199,8 +199,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963b05d79d28129419e9c2d630f2156e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panelList:
-  - {fileID: 4548343949358816169, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}
   _loadingButton: {fileID: 918224479}
 --- !u!114 &359209572
 MonoBehaviour:

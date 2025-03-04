@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Game.Common;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -13,33 +15,76 @@ public class UIManager : MonoSingleton<UIManager>
     private Dictionary<string, UIPanelBase> _panelDict = new Dictionary<string, UIPanelBase>();
     
     public Dictionary<string, UIPanelBase> PanelDict => _panelDict;
-    
+
+    private UIPanelsSo panelsSo;
+
+    private void Awake()
+    {
+        panelsSo = Resources.Load<UIPanelsSo>($"SettingAssets/UIPanel");
+    }
+
+
     public void ShowPanel(string panelName)
     {
         if (_panelDict.ContainsKey(panelName))
         {
-            _panelDict[panelName].gameObject.SetActive(true);
+            ShowPanelContainInner(_panelDict[panelName]);
         }
         else
         {
-            UIPanelsSo panelsSo = Resources.Load<UIPanelsSo>($"SettingAssets/UIPanel");
             foreach (UIPanelBase panelPrefab in panelsSo.uIPanels)
             {
                 if(panelPrefab.name != panelName) continue;
-                UIPanelBase panel = Instantiate(panelPrefab,transform);
-                RectTransform rectTransform = panel.GetComponent<RectTransform>();
-                rectTransform.localScale = Vector3.one;
-                
-                _panelDict.Add(panelName, panel.GetComponent<UIPanelBase>());
+                ShowPanelNewInner(panelPrefab);
                 break;
             }
-            
         }
     }
     
-    private void Start()
+    private void ShowPanelNewInner(UIPanelBase panelPrefab, UIData uiData = null)
     {
-        
+        UIPanelBase panel = Instantiate(panelPrefab,transform);
+        RectTransform rectTransform = panel.GetComponent<RectTransform>();
+        rectTransform.localScale = Vector3.one;
+                
+        _panelDict.Add(panelPrefab.name, panel.GetComponent<UIPanelBase>());
+        panel.UiData = uiData;
+        panel.Show();
+    }
+    
+    public void ShowPanel<T>(UIData uiData = null) where T : UIPanelBase
+    {
+        string panelName = typeof(T).Name;
+        if (_panelDict.ContainsKey(panelName))
+        {
+            ShowPanelContainInner(_panelDict[panelName],uiData);
+        }
+        else
+        {
+            foreach (UIPanelBase panelPrefab in panelsSo.uIPanels)
+            {
+                if(panelPrefab is not T) continue;
+                ShowPanelNewInner(panelPrefab,uiData);
+                break;
+            }
+        }
+    }
+
+    private void ShowPanelContainInner(UIPanelBase uiPanelBase, UIData uiData = null)
+    {
+        // uiPanelBase.gameObject.SetActive(true);
+        uiPanelBase.UiData = uiData;
+        uiPanelBase.Show();
+        uiPanelBase.OnShow();
+    }
+
+    public void HidePanel<T>()
+    {
+        string panelName = typeof(T).Name;
+        if (_panelDict.ContainsKey(panelName))
+        {
+            _panelDict[panelName].Hide();
+        }
     }
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -61,4 +106,7 @@ public class UIManager : MonoSingleton<UIManager>
             }
         }
     }
+
+
+    
 }

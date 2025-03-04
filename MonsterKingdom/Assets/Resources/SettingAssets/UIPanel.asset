@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uIPanels:
   - {fileID: 4548343949358816148, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}
+  - {fileID: 2359129820397949389, guid: e3a801dafd54abb4eba8bae8aaa3247e, type: 3}

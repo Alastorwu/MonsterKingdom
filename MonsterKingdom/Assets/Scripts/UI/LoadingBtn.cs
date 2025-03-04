@@ -22,8 +22,8 @@ public class LoadingBtn : MonoBehaviour
                         UIManager.instance.ShowPanel("CardSettingPanel");
                     }
                 };*/
-                //_loadingButton.gameObject.SetActive(false);
-                UIManager.instance.ShowPanel("CardSettingPanel");
+                _loadingButton?.gameObject.SetActive(false);
+                UIManager.instance.ShowPanel<CardSettingPanel>();
             });
         }
         else
