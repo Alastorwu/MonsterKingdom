@@ -6,20 +6,33 @@ namespace Utils
     {
         public static void MousePosToUI(this RectTransform tran,Vector2 pos)
         {
-            Debug.Log("screen w:" + Screen.width + ", h:" + Screen.height);
-            Debug.Log("click pos x:" + pos.x + ",pos y:" + pos.y);
+            // 获取Canvas和父RectTransform
+            Canvas canvas = tran.GetComponentInParent<Canvas>();
+            if (canvas == null)
+            {
+                Debug.LogError("目标UI不在Canvas中！");
+                return;
+            }
 
-            float X = Input.mousePosition.x - Screen.width / 2f;
-            float Y = Input.mousePosition.y - Screen.height / 2f;
-            Vector2 tranPos = new Vector2(X, Y);
-            tran.localPosition = tranPos;
+            RectTransform parentRT = tran.parent as RectTransform;
+            if (parentRT == null)
+            {
+                Debug.LogError("目标UI的父对象缺少RectTransform组件！");
+                return;
+            }
 
-            //得到画布的尺寸
-            Vector2 uisize = tran.sizeDelta;
-            Debug.Log("sizeDelta w:" + uisize.x + ", h:" + uisize.y);
+            // 根据Canvas渲染模式选择相机
+            Camera renderCamera = (canvas.renderMode == RenderMode.ScreenSpaceOverlay) ? null : canvas.worldCamera;
 
-            Vector2 finalPos = new Vector2(X * (uisize.x / Screen.width), Y * (uisize.y / Screen.height));
-            tran.localPosition = finalPos;
+            // 转换鼠标坐标
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    parentRT, 
+                    pos, 
+                    renderCamera, 
+                    out Vector2 localPoint))
+            {
+                tran.anchoredPosition = localPoint; // 移动UI
+            }
         }
     }
 }
