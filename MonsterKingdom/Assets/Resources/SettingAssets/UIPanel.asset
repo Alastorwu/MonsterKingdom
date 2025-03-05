@@ -15,3 +15,4 @@ MonoBehaviour:
   uIPanels:
   - {fileID: 4548343949358816148, guid: 343631ffaababf546b9e85f3d1ec8a9f, type: 3}
   - {fileID: 2359129820397949389, guid: e3a801dafd54abb4eba8bae8aaa3247e, type: 3}
+  - {fileID: 1718402168785830213, guid: d0c37b6859fb4d2468132ea4498350ac, type: 3}

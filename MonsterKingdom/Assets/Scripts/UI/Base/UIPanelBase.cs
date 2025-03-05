@@ -4,7 +4,7 @@ namespace UI
 {
     public abstract class UIPanelBase : MonoBehaviour
     {
-        public UIData UiData;
+        public UIData InitData;
 
         public virtual void Init()
         {

@@ -15,13 +15,8 @@ using Button = UnityEngine.UI.Button;
 public class CardSettingPanel : UIPanelBase
 {
     [SerializeField]
-    private GameObject _monsterCardOrigin;
-    
-    [SerializeField]
     private GameObject _skillCardOrigin;
 
-    [SerializeField]
-    private ScrollRect _monsterCardChoose;
     
     [SerializeField]
     private ScrollRect _skillCardChoose;
@@ -59,8 +54,7 @@ public class CardSettingPanel : UIPanelBase
         }
         for (var i = 0; i < _monsterDeployWidgets.Length; i++)
         {
-            _monsterDeployWidgets[i].SetMonsterId(GameManager.instance.teams?[0]?.Monsters?[i]?.CfgId);
-            _monsterDeployWidgets[i].GetComponent<Button>().onClick.AddListener(ShowMonsterCardChoose(i));
+            _monsterDeployWidgets[i].SetMonsterId(GameManager.instance.teams?[0]?.Monsters?[i]?.CfgId,i);
         }
         for (var i = 0; i < _skillCardDeployWidgets.Length; i++)
         {
@@ -101,46 +95,4 @@ public class CardSettingPanel : UIPanelBase
         };
     }
 
-    private UnityAction ShowMonsterCardChoose(int index)
-    {
-        return () => { 
-            
-            if (_monsterDeployWidgets[index].monsterId != null)
-            {
-                UIManager.instance.ShowPanel<CardChooseMenuPanel>(new CardChooseMenuData()
-                {
-                    pos = Input.mousePosition
-                });
-            }
-            else
-            {
-                _monsterCardChoose.gameObject.SetActive(true);
-                Transform content = _monsterCardChoose.transform.GetChild(0).GetChild(0);
-                for (int i = 0; i < content.childCount; i++)
-                {
-                    Destroy(content.GetChild(i).gameObject);
-                }
-                foreach (MonsterCfg monsterCfg in LubanCfg.instance.cfgTables.TblMonster.DataList)
-                {
-                    MonsterCardWidget monsterCardWidget 
-                        = Instantiate(_monsterCardOrigin, content).GetComponent<MonsterCardWidget>();
-                    monsterCardWidget.MonsterId = monsterCfg.Id;
-                    Button monsterCardButton = monsterCardWidget.AddComponent<Button>();
-                    monsterCardButton.onClick.AddListener(() =>
-                    {
-                        GameManager.instance.teams[0].Monsters[index] = new Monster
-                        {
-                            CfgId = monsterCfg.Id
-                        };
-                        _monsterDeployWidgets[index].SetMonsterId(monsterCfg.Id);
-                        _monsterCardChoose.gameObject.SetActive(false);
-                        LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
-                    });
-                }
-                LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
-            }
-           
-            
-        };
-    }
 }

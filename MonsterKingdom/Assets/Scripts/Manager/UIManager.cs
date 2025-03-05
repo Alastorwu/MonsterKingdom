@@ -48,7 +48,7 @@ public class UIManager : MonoSingleton<UIManager>
         rectTransform.localScale = Vector3.one;
                 
         _panelDict.Add(panelPrefab.name, panel.GetComponent<UIPanelBase>());
-        panel.UiData = uiData;
+        panel.InitData = uiData;
         panel.Show();
     }
     
@@ -73,7 +73,7 @@ public class UIManager : MonoSingleton<UIManager>
     private void ShowPanelContainInner(UIPanelBase uiPanelBase, UIData uiData = null)
     {
         // uiPanelBase.gameObject.SetActive(true);
-        uiPanelBase.UiData = uiData;
+        uiPanelBase.InitData = uiData;
         uiPanelBase.Show();
         uiPanelBase.OnShow();
     }

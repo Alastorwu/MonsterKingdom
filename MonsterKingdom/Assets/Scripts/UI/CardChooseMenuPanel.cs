@@ -28,7 +28,7 @@ namespace UI
         
         public override void OnShow()
         {
-            if (UiData is not CardChooseMenuData data)
+            if (InitData is not CardChooseMenuData data)
             {
                 return;
             }
@@ -46,6 +46,8 @@ namespace UI
             var textMeshProUGUI = changeBtn.GetComponentInChildren<TextMeshProUGUI>();
             if (textMeshProUGUI != null) textMeshProUGUI.text = "替换";
             changeBtn.gameObject.SetActive(true);
+            
+            
             
             _itemBtnOri.gameObject.SetActive(false);
         }
