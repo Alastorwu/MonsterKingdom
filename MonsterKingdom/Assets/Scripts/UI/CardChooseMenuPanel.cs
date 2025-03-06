@@ -51,8 +51,22 @@ namespace UI
             changeBtn.gameObject.SetActive(true);
             
             
+            Button changeSkillBtn = GameObject.Instantiate(_itemBtnOri, menuTransform);
+            changeSkillBtn.onClick.AddListener(ChangeSkillClick);
+            var textMeshProUGUI2 = changeSkillBtn.GetComponentInChildren<TextMeshProUGUI>();
+            if (textMeshProUGUI2 != null) textMeshProUGUI2.text = "更换技能";
+            changeSkillBtn.gameObject.SetActive(true);
             
             _itemBtnOri.gameObject.SetActive(false);
+        }
+
+        private void ChangeSkillClick()
+        {
+            UIManager.instance.ShowPanel<MonsterDetailPanel>(new MonsterDetailData()
+            {
+                index = _data.index
+            });
+            UIManager.instance.HidePanel<CardChooseMenuPanel>();
         }
 
         private void ChangeClick()

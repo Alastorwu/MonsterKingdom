@@ -42,8 +42,7 @@ namespace UI
                         CfgId = monsterCfg.Id
                     };
                     data.onMonsterChoose?.Invoke(monsterCfg.Id);
-                    _monsterCardChoose.gameObject.SetActive(false);
-                    LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
+                    UIManager.instance.HidePanel<MonsterChoosePanel>();
                 });
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
