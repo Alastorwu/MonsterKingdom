@@ -30,7 +30,9 @@ public class MonsterDeployWidget : MonoBehaviour
         {
             UIManager.instance.ShowPanel<CardChooseMenuPanel>(new CardChooseMenuData()
             {
-                pos = Input.mousePosition
+                pos = Input.mousePosition,
+                index = _index,
+                onMonsterChoose = OnMonsterChoose
             });
         }
         else
@@ -38,12 +40,14 @@ public class MonsterDeployWidget : MonoBehaviour
             UIManager.instance.ShowPanel<MonsterChoosePanel>(new MonsterChooseData()
             {
                 index = _index,
-                onMonsterChoose = (id) =>
-                {
-                    SetMonsterId(id, _index);
-                }
+                onMonsterChoose = OnMonsterChoose
             });  
         }
+    }
+
+    private void OnMonsterChoose(string id)
+    {
+        SetMonsterId(id, _index);
     }
 
     public void SetMonsterId(string monsterId, int index)

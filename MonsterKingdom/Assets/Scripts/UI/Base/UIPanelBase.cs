@@ -14,6 +14,7 @@ namespace UI
         public virtual void Show()
         {
             gameObject.SetActive(true);
+            gameObject.transform.SetAsLastSibling();
             OnShow();
         }
         
