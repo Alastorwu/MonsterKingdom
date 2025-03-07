@@ -12,6 +12,14 @@ namespace Model
             get => _monsters;
             set => _monsters = value;
         }
+
+        public Team()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                _monsters[i] = new Monster();
+            }
+        }
     }
 }
 

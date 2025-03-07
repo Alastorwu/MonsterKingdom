@@ -15,7 +15,7 @@ public class SaveData
     public struct SaveMonster
     {
         public string cfgId;
-        public int[] skillCfgIds;
+        public string[] skillCfgIds;
     }
 
 }

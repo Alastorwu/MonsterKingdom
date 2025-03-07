@@ -5,7 +5,7 @@ namespace Model
     public class Monster
     {
         private string _cfgId;
-        private List<Skill> _skills = new();
+        private Skill[] _skills = new Skill[4];
         
         public string CfgId
         {
@@ -16,6 +16,18 @@ namespace Model
             }
         }
 
-        public List<Skill> Skills => _skills;
+        public Skill[] Skills
+        {
+            get => _skills;
+            set => _skills = value;
+        }
+
+        public Monster()
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                _skills[i] = new Skill();
+            }
+        }
     }
 }

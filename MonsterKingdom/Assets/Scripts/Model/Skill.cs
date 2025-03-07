@@ -1,16 +1,8 @@
 ﻿namespace Model
 {
-    public class Skill
+    public struct Skill
     {
-        private string _cfgId;
+        public string CfgId;
         
-        public string CfgId
-        {
-            get => _cfgId;
-            set
-            {
-                _cfgId = value;
-            }
-        }
     }
 }
