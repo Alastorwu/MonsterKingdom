@@ -14,18 +14,18 @@ using Button = UnityEngine.UI.Button;
 
 public class CardSettingPanel : UIPanelBase
 {
-    [SerializeField]
+    /*[SerializeField]
     private GameObject _skillCardOrigin;
 
     
     [SerializeField]
-    private ScrollRect _skillCardChoose;
+    private ScrollRect _skillCardChoose;*/
     
     [SerializeField]
     private MonsterDeployWidget[] _monsterDeployWidgets;
     
-    [SerializeField]
-    private SkillCardDeployWidget[] _skillCardDeployWidgets;
+    /*[SerializeField]
+    private SkillCardDeployWidget[] _skillCardDeployWidgets;*/
     
     private void Awake()
     {
@@ -56,14 +56,14 @@ public class CardSettingPanel : UIPanelBase
         {
             _monsterDeployWidgets[i].SetMonsterId(GameManager.instance.teams?[0]?.Monsters?[i]?.CfgId,i);
         }
-        for (var i = 0; i < _skillCardDeployWidgets.Length; i++)
+        /*for (var i = 0; i < _skillCardDeployWidgets.Length; i++)
         {
             _skillCardDeployWidgets[i].SetSkillId(GameManager.instance.teams?[0]?.Monsters?[0]?.Skills?[i]?.CfgId);
             _skillCardDeployWidgets[i].GetComponent<Button>().onClick.AddListener(ShowSkillCardChoose(i));
-        }
+        }*/
     }
 
-    private UnityAction ShowSkillCardChoose(int index)
+    /*private UnityAction ShowSkillCardChoose(int index)
     {
         return () => { 
             _skillCardChoose.gameObject.SetActive(true);
@@ -85,14 +85,14 @@ public class CardSettingPanel : UIPanelBase
                     /*GameManager.instance.teams[0].Monsters[0].Skills[index] = new Skill
                     {
                         CfgId = skillCfg.Id
-                    };*/
-                    _skillCardDeployWidgets[index].SetSkillId(skillCfg.Id);
+                    };#1#
+                    //_skillCardDeployWidgets[index].SetSkillId(skillCfg.Id);
                     _skillCardChoose.gameObject.SetActive(false);
                     LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
                 });
             }
             LayoutRebuilder.ForceRebuildLayoutImmediate(content.GetComponent<RectTransform>());
         };
-    }
+    }*/
 
 }

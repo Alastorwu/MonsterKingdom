@@ -54,10 +54,13 @@ namespace Manager
                         team.Monsters[i] = new Monster()
                         {
                             CfgId = saveTeam.saveMonsters[i].cfgId,
-                            Skills = { new Skill()
+                            Skills = new []
                             {
-                                CfgId = saveTeam.saveMonsters[i].skillCfgIds[0].ToString()
-                            }}
+                                new Skill(){CfgId = saveTeam.saveMonsters[i].skillCfgIds[0]},
+                                new Skill(){CfgId = saveTeam.saveMonsters[i].skillCfgIds[1]},
+                                new Skill(){CfgId = saveTeam.saveMonsters[i].skillCfgIds[2]},
+                                new Skill(){CfgId = saveTeam.saveMonsters[i].skillCfgIds[3]}
+                            }
                         };
                     }
                     teams.Add(team);

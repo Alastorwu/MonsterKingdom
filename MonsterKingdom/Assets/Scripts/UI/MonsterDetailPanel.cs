@@ -31,9 +31,9 @@ namespace UI
             // _monsterImage.sprite = Resources.Load<Sprite>("Monster/" + monster.CfgId);
             for (var i = 0; i < _skills.Count; i++)
             {
-                if (i < monster.Skills.Count)
+                if (i < monster.Skills.Length)
                 {
-                    _skills[i].SetSkillId(monster.Skills[i].CfgId);
+                    _skills[i].SetSkillId(monster.Skills[i].CfgId,_monsterIndex,i);
                 }
             }
         }
